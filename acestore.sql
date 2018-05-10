@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.1.14
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2018 at 02:23 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: May 10, 2018 at 12:39 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `acestore`
@@ -26,10 +26,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -37,10 +38,11 @@ CREATE TABLE `admin` (
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `categories`
@@ -50,7 +52,6 @@ INSERT INTO `categories` (`id`, `title`) VALUES
 (1, 'Household'),
 (2, 'Veggies and Fruits'),
 (3, 'Food Stuff'),
-(4, 'Beverages'),
 (5, 'Frozen Food'),
 (6, 'Bread and Bakery');
 
@@ -60,16 +61,17 @@ INSERT INTO `categories` (`id`, `title`) VALUES
 -- Table structure for table `items`
 --
 
-CREATE TABLE `items` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
   `info` text NOT NULL,
   `qty` int(20) NOT NULL,
   `ref` varchar(255) NOT NULL,
   `pix` text NOT NULL,
-  `cat_id` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cat_id` int(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `items`
@@ -124,14 +126,15 @@ INSERT INTO `items` (`id`, `title`, `price`, `info`, `qty`, `ref`, `pix`, `cat_i
 -- Table structure for table `members`
 --
 
-CREATE TABLE `members` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `members` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `reg_date` datetime NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `pass1` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='member table containing their registration info';
+  `pass1` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='member table containing their registration info' AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `members`
@@ -141,60 +144,9 @@ INSERT INTO `members` (`id`, `reg_date`, `fullname`, `email`, `phone`, `pass1`) 
 (1, '2018-04-19 05:25:01', 'chidinma', 'charles@chuks.com', '81dc9bdb52d04dc20036', '1234'),
 (2, '2018-04-19 05:26:04', 'chidinma', 'charles@chuks.com', '81dc9bdb52d04dc20036', '1234'),
 (3, '2018-04-19 05:34:46', 'tusky', 'c@gmail.com', '12345', '81dc9bdb52d04dc20036'),
-(4, '2018-04-21 17:05:04', 'chidi', 'c1@otutu.com', '00000', '81dc9bdb52d04dc20036dbd8313ed055');
+(4, '2018-04-21 17:05:04', 'chidi', 'c1@otutu.com', '00000', '81dc9bdb52d04dc20036dbd8313ed055'),
+(5, '2018-05-09 10:11:13', 'nora', 'nora@food.com', '2703205986', '25f9e794323b453885f5181f1b624d0b');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `items`
---
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `members`
---
-ALTER TABLE `members`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `items`
---
-ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
---
--- AUTO_INCREMENT for table `members`
---
-ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
